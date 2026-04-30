@@ -62,7 +62,6 @@ namespace Algorithms_CS.Graphs
                 Console.WriteLine($"{i}: {(p.Count > 1 ? string.Join(" -> ", p) : "Root")}");
             }
         }
-
         enum Color
         {
             White,
