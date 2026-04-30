@@ -6,6 +6,7 @@
         {
             Console.WriteLine("Hello, World!");
             TestDFS();
+
         }
 
         public static void TestBFS()
