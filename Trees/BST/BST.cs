@@ -1,4 +1,6 @@
 ﻿using Algorithms_CS.Trees.BST;
+using System.Security;
+using System.Xml;
 
 namespace Algorithms_C_.Trees.BST
 {
@@ -142,6 +144,94 @@ namespace Algorithms_C_.Trees.BST
                     currentNode = currentNode.left;                
             }
             return null;
+        }
+
+
+        public void LNR(Node node)
+        {
+            if (node == null) return;
+
+            LNR(node.left);
+            Console.WriteLine(node.key);
+            LNR(node.right);
+        }
+
+        public void NLR(Node node)
+        {
+            if (node == null) return;
+
+            Console.WriteLine(node.key);
+            NLR(node.left);
+            NLR(node.right);
+        }
+
+        public void LRN(Node node)
+        {
+            if (node == null) return;
+
+            LRN(node.left);
+            LNR(node.right);
+            Console.WriteLine(node.key);
+        }
+
+
+        public void NLRIter(Node root)
+        {
+            Stack<Node> stack = new Stack<Node>();
+
+            stack.Push(root);
+
+            while(stack.Count > 0)
+            {
+                Node currentNode = stack.Pop();
+
+                Console.WriteLine(currentNode.key);
+
+                if (currentNode.right != null)
+                    stack.Push(currentNode.right);
+                if(currentNode.left != null)
+                    stack.Push(currentNode.left);
+            }
+        }
+
+        public void LNRIter(Node node)
+        {
+            Stack<Node> stack = new Stack<Node>();
+
+            while(stack.Count > 0 || node != null)
+            {
+                if(node != null)
+                {
+                    stack.Push(node);
+                    node = node.left;
+                }
+                else
+                {
+                    node = stack.Pop();
+                    Console.WriteLine(node.key);
+                    node = node.right;
+                }
+            }
+        }
+
+        public void LRNIter(Node node)
+        {
+            Stack<Node> stack = new Stack<Node>();
+            stack.Push(node);
+
+            LinkedList<int> linkedList = new LinkedList<int>();
+
+            while(stack.Count > 0)
+            {
+                Node currentNode = stack.Pop();
+
+                linkedList.AddFirst(currentNode.key.Value);
+
+                if (currentNode.left != null)
+                    stack.Push(currentNode.left);
+                if (currentNode.right != null)
+                    stack.Push(currentNode.right);
+            }                       
         }
     }
 }
