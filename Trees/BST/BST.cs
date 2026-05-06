@@ -2,7 +2,7 @@
 using System.Security;
 using System.Xml;
 
-namespace Algorithms_C_.Trees.BST
+namespace Algorithms_CS.Trees.BST
 {
     public class BST
     {

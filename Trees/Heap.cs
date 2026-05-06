@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Algorithms_C_.Trees
+namespace Algorithms_CS.Trees
 {
     public class Heap
     {
