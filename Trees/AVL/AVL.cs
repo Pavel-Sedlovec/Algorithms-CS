@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,19 +10,19 @@ namespace Algorithms_CS.Trees.AVL
     public class AVL
     {
         Node root = null;
-        public int Height(Node node)
+        private int Height(Node node)
         {
             if(node != null) return node.height;
             else return 0;
         }
 
-        public int Bfactor(Node node)
+        private int Bfactor(Node node)
         {
             if(node == null) return 0;
             return Height(node.right) - Height(node.left);
         }
 
-        public void FixHeight(Node node)
+        private void FixHeight(Node node)
         {
             int hl = Height(node.left);
             int hr = Height(node.right);
@@ -29,7 +30,7 @@ namespace Algorithms_CS.Trees.AVL
             node.height = (hl > hr ? hl : hr) + 1;
         }
 
-        public Node RightRotate(Node x)
+        private Node RightRotate(Node x)
         {
             Node y = x.left;
             x.left = y.right;
@@ -40,7 +41,7 @@ namespace Algorithms_CS.Trees.AVL
             return y;
         }
 
-        public Node LeftRotate(Node x)
+        private Node LeftRotate(Node x)
         {
             Node y = x.right;
             x.right = y.left;
@@ -50,7 +51,7 @@ namespace Algorithms_CS.Trees.AVL
             return y;
         }
 
-        public Node Balance(Node node)
+        private Node Balance(Node node)
         {
             FixHeight(node);
 
@@ -73,7 +74,7 @@ namespace Algorithms_CS.Trees.AVL
             return node;
         }
 
-        public Node Insert(Node node,int key)
+        private Node Insert(Node node,int key)
         {
             if (node == null) return new Node(key);
 
@@ -96,6 +97,60 @@ namespace Algorithms_CS.Trees.AVL
         public void Insert(int key)
         {
             root = Insert(root, key);
+        }
+
+        private Node FindMin(Node node)
+        {
+            return node.left != null ? FindMin(node.left) : node;
+        }
+
+        private Node RemoveMin(Node node)
+        {
+            if(node.left == null)
+            {
+                return node.right;
+            }
+            else
+            {
+                node.left = RemoveMin(node.left);
+            }
+            return Balance(node);
+        }
+
+        private Node Delete(Node node, int key)
+        {
+            if (node == null) return null;
+
+            if (key > node.key)
+            {
+                node.right = Delete(node.right, key);
+            }
+            else if(key < node.key)
+            {
+                node.left = Delete(node.left, key);
+            }
+            else
+            {
+                Node left = node.left;
+                Node right = node.right;
+
+                node = null;
+
+                if (right == null) return left;
+                if (left == null) return right;
+
+                Node min = FindMin(right);
+                min.right = RemoveMin(right);
+                min.left = left;
+                return Balance(min);
+
+            }
+            return Balance(node);
+        }
+
+        public void Delete(int key)
+        {
+            root = Delete(root, key);
         }
     }
 }
