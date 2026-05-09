@@ -52,5 +52,52 @@
             x.Keys[i] = y.Keys[T];
             x.Count++;
         }
+
+        public void Insert(int key)
+        {
+            BNode r = root;
+            if (root.Count == T * 2 - 1)
+            {
+                BNode s = new BNode(false);
+                root = s;
+                s.Count = 0;
+                s.Kids[0] = r;
+                SplitChild(s, 0, r);
+                InsertNotfull(s, key);
+            }
+            else
+            {
+                InsertNotfull(r, key);
+            }
+        }
+
+        public void InsertNotfull(BNode x, int k)
+        {
+            int i = x.Count - 1;
+
+            if (x.IsLeaf)
+            {
+                while (i >= 0 && k < x.Keys[i])
+                {
+                    x.Keys[i + 1] = x.Keys[i];
+                    i--;
+                }
+                x.Keys[i + 1] = k;
+                x.Count++;
+            }
+            else
+            {                
+                while (i >= 0 && k < x.Keys[i])                
+                    i--;                
+                i++;
+
+                if (x.Kids[i].Count == 2 * T - 1)                
+                    SplitChild(x, i, x.Kids[i]);
+                    if (k > x.Keys[i])
+                        i++;
+                
+                InsertNotfull(x.Kids[i], k);
+            }
+        }
     }
 }
