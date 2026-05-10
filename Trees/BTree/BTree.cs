@@ -5,13 +5,13 @@
         BNode root = null;
         public const int T = 2;
 
-        public (BNode resNode, int positionKey) ?Search(BNode node, int key)
+        public (BNode resNode, int positionKey)? Search(BNode node, int key)
         {
             int i = 0;
-            while(i <= node.Count && key > node.Keys[i])                         
+            while(i < node.Count && key > node.Keys[i])                         
                 i++;
                            
-            if (i <= node.Count && key == node.Keys[i])
+            if (i < node.Count && key == node.Keys[i])
                 return (node, i);
 
             if (node.IsLeaf)
@@ -91,11 +91,13 @@
                     i--;                
                 i++;
 
-                if (x.Kids[i].Count == 2 * T - 1)                
+                if (x.Kids[i].Count == 2 * T - 1)
+                {
                     SplitChild(x, i, x.Kids[i]);
                     if (k > x.Keys[i])
                         i++;
-                
+                }
+
                 InsertNotfull(x.Kids[i], k);
             }
         }

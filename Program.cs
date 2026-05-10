@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            TestAVL();
+            TestKosaraju();
 
         }
 
@@ -37,6 +37,20 @@
 
             Graphs.DFS dfs = new Graphs.DFS();
             dfs.StartDFS(maze);
+        }
+
+        public static void TestKosaraju()
+        {
+            int[,] matrix1 = 
+            {
+                {0, 1, 1, 0}, // 0 -> 1 и 0 -> 2
+                {1, 0, 0, 0}, // 1 -> 0
+                {0, 0, 0, 1}, // 2 -> 3
+                {0, 0, 1, 0}  // 3 -> 2
+            };
+
+            Graphs.Kosaraju kos = new Graphs.Kosaraju(matrix1);
+            kos.RunKosaraju();
         }
 
         public static void TestAVL()
