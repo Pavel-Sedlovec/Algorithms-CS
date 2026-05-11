@@ -50,7 +50,7 @@ namespace Algorithms_CS.Trees
             int rootY = Find(y);
 
             if (rootX == rootY) return;
-
+              
             if (_rank[rootX] > _rank[rootY])
             {
                 _parent[rootY] = rootX;

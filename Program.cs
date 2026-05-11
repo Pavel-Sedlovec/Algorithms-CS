@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            TestKosaraju();
+            TestBelmanFord();
 
         }
 
@@ -62,6 +62,32 @@
                 avl.Insert(i);
             }
             Console.WriteLine();
+        }
+
+        public static void TestDijkstra()
+        {
+            int[,] matrix =
+            {
+                {0, 3, 5, 60}, // 0 -> 1 и 0 -> 2
+                {3, 0, 1, 0}, // 1 -> 0
+                {5, 1, 0, 30}, // 2 -> 3
+                {60, 0, 30, 0}  // 3 -> 2
+            };
+            Graphs.Dijkstra d = new Graphs.Dijkstra();
+            d.RunDijkstra(matrix, 0);
+        }
+
+        public static void TestBelmanFord()
+        {
+            int[,] matrix = 
+            {
+                { 0,  5, 10 }, // Из 0 в 1 (5), из 0 в 2 (10)
+                { 0,  0,  2 }, // Из 1 в 2 (2)
+                { 0, -1,  0 }  // Из 2 в 1 (-1)
+            };
+
+            Graphs.BelmanFord bf = new Graphs.BelmanFord();
+            bf.RunBelmanFord(matrix, 0);
         }
     }
 }
