@@ -41,5 +41,40 @@ namespace Algorithms_CS.Graphs.MST
                 }
             }
         }
+
+        public void RunPrim(int[,] matrix, int r)
+        {
+            int n = matrix.GetLength(0);
+            int[] key = new int[n];
+            int[] parent = new int[n];
+            bool[] vizited = new bool[n];
+            Trees.MinHeap minHeap = new Trees.MinHeap();
+
+
+            for(int i = 0; i < n; i++)
+            {
+                key[i] = int.MaxValue;
+                parent[i] = -1;
+            }
+            key[r] = 0;
+            minHeap.Push(key[r], r);
+
+            while(minHeap.Count > 0)
+            {
+                int u = minHeap.Pop();
+                if (vizited[u]) continue;
+                vizited[u] = true;
+                for(int v = 0; v < n; v++)
+                {
+                    if (!vizited[v] && matrix[u,v] != 0 && key[v] > matrix[u, v])
+                    {
+                        key[v] = matrix[u, v];
+                        minHeap.Push(matrix[u, v], v);
+                        parent[v] = u;
+                    }
+                }
+            }
+
+        }
     }
 }
