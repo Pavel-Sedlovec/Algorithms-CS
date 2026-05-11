@@ -6,15 +6,22 @@ using System.Threading.Tasks;
 
 namespace Algorithms_CS.Trees
 {
-    public class Heap
+    public class MinHeap
     {
-        private int[] array = new int[1000];
+        private int[] arrayKey = new int[1000];
+        private int[] arrayIndex = new int[1000];
 
         private int pointer = 0;
 
-        public void Push(int element)
+        public int Count
         {
-            array[pointer] = element;
+            get { return pointer; }
+        }
+
+        public void Push(int key, int indexElement)
+        {
+            arrayKey[pointer] = key;
+            arrayIndex[pointer] = indexElement;
             Up(pointer);
             pointer++;
         }
@@ -23,11 +30,12 @@ namespace Algorithms_CS.Trees
         {
             if (pointer == 0) return -1;
 
-            int result = array[0];
+            int result = arrayIndex[0];
             pointer--;
             if (pointer > 0)
             {
-                array[0] = array[pointer];
+                arrayKey[0] = arrayKey[pointer];
+                arrayIndex[0] = arrayIndex[pointer];
                 Down(0);
             }
             return result;
@@ -35,7 +43,7 @@ namespace Algorithms_CS.Trees
 
         private void Up(int index)
         {
-            while(index != 0 && array[(index - 1)/2] < array[index])
+            while(index != 0 && arrayKey[(index - 1)/2] > arrayKey[index])
             {
                 Swap((index - 1) / 2, index);
                 index = (index - 1) / 2;
@@ -46,24 +54,28 @@ namespace Algorithms_CS.Trees
         {
             while(index*2+1 < pointer)
             {
-                int maxChild = index * 2 + 1;
+                int minChild = index * 2 + 1;
 
-                if (maxChild + 1 < pointer && array[maxChild + 1] > array[maxChild])
-                    maxChild = maxChild + 1;
+                if (minChild + 1 < pointer && arrayKey[minChild + 1] < arrayKey[minChild])
+                    minChild = minChild + 1;
 
-                if (array[index] > array[maxChild]) break;
+                if (arrayKey[index] <= arrayKey[minChild]) break;
 
-                Swap(index, maxChild);
-                index = maxChild;
+                Swap(index, minChild);
+                index = minChild;
             }
         }
 
         private void Swap(int i, int j)
         {
             if (i == j) return;
-            int temp = array[i];
-            array[i] = array[j];
-            array[j] = temp;
+            int tempKey = arrayKey[i];
+            arrayKey[i] = arrayKey[j];
+            arrayKey[j] = tempKey;
+
+            int tempIndex = arrayIndex[i];
+            arrayIndex[i] = arrayIndex[j];
+            arrayIndex[j] = tempIndex;
         }
     }
 }
