@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            TestBelmanFord();
+            TestFibonacci();
 
         }
 
@@ -88,6 +88,48 @@
 
             Graphs.BelmanFord bf = new Graphs.BelmanFord();
             bf.RunBelmanFord(matrix, 0);
+        }
+
+        public static void TestQuickSort()
+        {
+            int[] array = { 3, 8, 5, 7, 6, 0, 10 };
+            int[] array2 = { 3};
+            int[] array3 = { 0 };
+            int[] array4 = { 5,8 };
+            int[] array5 = { 3, 2, 1 };
+            Sorting.QuickSort qs = new Sorting.QuickSort();
+
+            Sorting.MergeSort ms = new Sorting.MergeSort();
+
+            array = ms.Sort(array5);
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine(array[i]);
+            }
+        }
+
+        public static void TestMergeSort()
+        {
+            int[] array = { 7,3,2,6,0,1,5,4};
+            int[] array2 = { 3 };
+            int[] array3 = { 0 };
+            int[] array4 = { 5, 8 };
+            int[] array5 = { 3, 2, 1 };
+
+            Sorting.MergeSort ms = new Sorting.MergeSort();
+
+            array = ms.Sort(array5);
+            for (int i = 0; i < array.Length; i++)
+            {
+                Console.WriteLine(array[i]);
+            }
+        }
+
+        public static void TestFibonacci()
+        {
+            int n = 40;
+            Fibonacci fib = new Fibonacci();
+            Console.WriteLine(fib.FibMemo(n));
         }
     }
 }
