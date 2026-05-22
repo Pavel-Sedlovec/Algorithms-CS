@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            TestFibonacci();
+            TestLL();
 
         }
 
@@ -130,6 +130,18 @@
             int n = 40;
             Fibonacci fib = new Fibonacci();
             Console.WriteLine(fib.FibMemo(n));
+        }
+
+        public static void TestLL()
+        {
+            BasicStructures.MyLinkedList ll = new BasicStructures.MyLinkedList();
+            ll.AddLast(1);
+            ll.AddLast(2);
+            ll.AddLast(3);
+            ll.AddLast(4);
+            ll.AddLast(5);
+            ll.Reverse();
+
         }
     }
 }

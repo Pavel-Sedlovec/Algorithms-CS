@@ -88,6 +88,22 @@ namespace Algorithms_CS.BasicStructures
             return res;
         }
 
+        public void Reverse() 
+        {
+            Node prev = null;
+            Node current = _head;
+            _tail = current;
+            while(current != null)
+            {
+                Node next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+            _head = prev;
+        }
+
+
         public class Node
         {
             public Node next = null;
