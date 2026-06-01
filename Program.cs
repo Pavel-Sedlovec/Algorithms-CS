@@ -5,10 +5,16 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            TestLL();
+            TestLeetCode();
 
         }
 
+        public static void TestLeetCode()
+        {
+            Problems.RemoveDuplicatesFromSortedArray lc = new Problems.RemoveDuplicatesFromSortedArray();
+            int[] array = { 0,1,2,3,4 };
+            lc.RemoveDuplicates(array);
+        }
         public static void TestBFS()
         {
             int[,] maze = new int[,]
