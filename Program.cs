@@ -11,9 +11,9 @@
 
         public static void TestLeetCode()
         {
-            Problems.RemoveDuplicatesFromSortedArray lc = new Problems.RemoveDuplicatesFromSortedArray();
-            int[] array = { 0,1,2,3,4 };
-            lc.RemoveDuplicates(array);
+            Problems.LongestCommonPrefix lc = new Problems.LongestCommonPrefix();
+            string[] array = { "flower", "flow", "flight" };
+            Console.WriteLine(lc.LongestCommon(array));
         }
         public static void TestBFS()
         {
