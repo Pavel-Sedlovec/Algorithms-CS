@@ -1,4 +1,6 @@
-﻿namespace Algorithms_CS
+﻿using Algorithms_CS.Problems;
+
+namespace Algorithms_CS
 {
     internal class Program
     {
@@ -11,9 +13,36 @@
 
         public static void TestLeetCode()
         {
-            Problems.LongestCommonPrefix lc = new Problems.LongestCommonPrefix();
-            string[] array = { "flower", "flow", "flight" };
-            Console.WriteLine(lc.LongestCommon(array));
+            Problems.InvertBinaryTree lc = new Problems.InvertBinaryTree();
+
+            Problems.ListNode list1 = new Problems.ListNode();
+            Problems.ListNode list2 = new Problems.ListNode();
+
+            list1.val = 4;
+            list1.next = new ListNode(2);
+            list1.next.next = new ListNode(1);
+            list1.next.next.next = new ListNode(3);
+            list1.next.next.next.next = new ListNode(7);
+            list1.next.next.next.next.next = new ListNode(6);
+            list1.next.next.next.next.next.next = new ListNode(9);
+
+            //list2.val = 0;
+            //list2.next = new ListNode(1);
+            //list2.next.next = new ListNode(2);
+            //list2.next.next.next = new ListNode(3);
+            //list2.next.next.next.next = new ListNode(4);
+
+            Problems.TreeNode tn = new TreeNode(4);
+            tn.left = new TreeNode(2);
+            tn.right = new TreeNode(7);
+            tn.right.left = new TreeNode(6);
+            tn.right.right = new TreeNode(9);
+            tn.left.left = new TreeNode(1);
+            tn.left.right = new TreeNode(3);
+
+
+            Console.WriteLine(lc.InvertTree(tn));
+            Console.ReadKey();
         }
         public static void TestBFS()
         {
