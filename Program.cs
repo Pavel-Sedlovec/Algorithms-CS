@@ -13,7 +13,7 @@ namespace Algorithms_CS
 
         public static void TestLeetCode()
         {
-            Problems.InvertBinaryTree lc = new Problems.InvertBinaryTree();
+            Problems.PathSum lc = new Problems.PathSum();
 
             Problems.ListNode list1 = new Problems.ListNode();
             Problems.ListNode list2 = new Problems.ListNode();
@@ -41,7 +41,7 @@ namespace Algorithms_CS
             tn.left.right = new TreeNode(3);
 
 
-            Console.WriteLine(lc.InvertTree(tn));
+            Console.WriteLine(lc.hasPathSum(17, tn));
             Console.ReadKey();
         }
         public static void TestBFS()
